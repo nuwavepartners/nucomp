@@ -1,0 +1,10 @@
+[Unit]
+Description=Run NuWave Ansible Pull periodically
+
+[Timer]
+OnBootSec=15min
+OnUnitActiveSec=8h
+Unit=nuwave-ansible.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,8 @@
+[Unit]
+Description=NuWave Ansible Pull Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/nuwave/nuwave-ansible.sh
