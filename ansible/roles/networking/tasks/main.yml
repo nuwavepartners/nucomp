@@ -1,0 +1,53 @@
+---
+- name: Configure Network Bonding and Bridge
+  block:
+    - name: Create bond0 interface
+      community.general.nmcli:
+        type: bond
+        conn_name: bond0
+        ifname: bond0
+        mode: active-backup
+        state: present
+
+    - name: Add eno1 to bond0
+      community.general.nmcli:
+        type: ethernet
+        conn_name: bond0-eno1
+        ifname: eno1
+        master: bond0
+        state: present
+
+    - name: Add eno2 to bond0
+      community.general.nmcli:
+        type: ethernet
+        conn_name: bond0-eno2
+        ifname: eno2
+        master: bond0
+        state: present
+
+    - name: Create bridge0 interface
+      community.general.nmcli:
+        type: bridge
+        conn_name: bridge0
+        ifname: bridge0
+        state: present
+
+    - name: Slave bond0 to bridge0
+      community.general.nmcli:
+        type: bond
+        conn_name: bond0
+        ifname: bond0
+        master: bridge0
+        state: present
+
+    - name: Configure bridge0 static IP
+      community.general.nmcli:
+        type: bridge
+        conn_name: bridge0
+        ifname: bridge0
+        ip4: 192.168.31.10/24
+        gw4: 192.168.31.1
+        dns4: 8.8.8.8
+        method4: manual
+        method6: disabled
+        state: present

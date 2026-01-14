@@ -1,0 +1,14 @@
+---
+- name: Enable and start dnf-automatic-install.timer
+  ansible.builtin.systemd:
+    name: dnf-automatic-install.timer
+    enabled: true
+    state: started
+  become: true
+
+- name: Enable and start chronyd
+  ansible.builtin.systemd:
+    name: chronyd
+    enabled: true
+    state: started
+  become: true

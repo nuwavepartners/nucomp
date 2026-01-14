@@ -1,0 +1,26 @@
+---
+- name: Local system configuration
+  hosts: localhost
+  connection: local
+  gather_facts: true
+  
+  tasks:
+    - name: Display successful execution message
+      debug:
+        msg: "Ansible-pull executed successfully on {{ ansible_fqdn | default('localhost') }} at {{ ansible_date_time.iso8601 }}"
+
+    - name: Apply Base Configuration
+      include_role:
+        name: base
+
+    - name: Apply Base Server Configuration
+      include_role:
+        name: base-server
+
+    - name: Apply Networking Configuration
+      include_role:
+        name: networking
+
+    - name: Apply Virtualization Configuration
+      include_role:
+        name: virtualization

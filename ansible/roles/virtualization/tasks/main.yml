@@ -1,0 +1,45 @@
+---
+- name: Install Virtualization and Cockpit Packages
+  ansible.builtin.dnf:
+    name:
+      - "@Virtualization Host"
+      - virtio-win
+      - virt-install
+      - cockpit
+      - cockpit-machines
+      - cockpit-podman
+      - libvirt
+    state: present
+
+- name: Enable and start services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    enabled: true
+    state: started
+  loop:
+    - libvirtd
+    - cockpit.socket
+
+- name: Define default network
+  community.libvirt.virt_net:
+    command: define
+    name: default
+    xml: "{{ lookup('template', 'net-bridge0.xml.j2') }}"
+
+- name: Start and autostart default network
+  community.libvirt.virt_net:
+    state: active
+    autostart: true
+    name: default
+
+- name: Define default storage pool
+  community.libvirt.virt_pool:
+    command: define
+    name: default
+    xml: "{{ lookup('template', 'pool-default.xml.j2') }}"
+
+- name: Start and autostart default storage pool
+  community.libvirt.virt_pool:
+    state: active
+    autostart: true
+    name: default
