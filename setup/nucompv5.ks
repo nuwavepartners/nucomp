@@ -73,7 +73,9 @@ git
 
 %post --log=/root/ks-post.log
 # Install and enable nuwave-ansible systemd units
+mkdir /opt/nuwave
 curl -o /opt/nuwave/nuwave-ansible.sh https://raw.githubusercontent.com/nuwavepartners/nucomp/refs/heads/main/setup/nuwave-ansible.sh
+chmod +x /opt/nuwave/nuwave-ansible.sh
 curl -o /etc/systemd/system/nuwave-ansible.service https://raw.githubusercontent.com/nuwavepartners/nucomp/refs/heads/main/setup/nuwave-ansible.service
 curl -o /etc/systemd/system/nuwave-ansible.timer https://raw.githubusercontent.com/nuwavepartners/nucomp/refs/heads/main/setup/nuwave-ansible.timer
 systemctl daemon-reload

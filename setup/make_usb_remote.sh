@@ -2,7 +2,7 @@
 #
 # @file generate_boot_image.sh
 # @author Chris Stone
-# @version 1.0.1
+# @version 1.3.1
 # @description Creates a Secure Boot compatible USB image for Rocky Linux network install.
 #              Requires root privileges for loopback mounting if not using mtools.
 #              This script uses mtools to avoid requiring root.
@@ -15,7 +15,7 @@ IMAGE_SIZE_MB=200
 SOURCE_DIR="${1}"
 
 # The URLs where the kickstart and repo are hosted
-INST_REPO="https://mirrors.egr.msu.edu/rockylinux/10.1/BaseOS/x86_64/os/"
+INST_REPO="https://mirrors.egr.msu.edu/rockylinux/10/BaseOS/x86_64/os/"
 INST_KS="https://raw.githubusercontent.com/nuwavepartners/nucomp/refs/heads/main/setup/nucompv5.ks"
 
 # --- Validation ---
