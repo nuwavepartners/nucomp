@@ -19,7 +19,7 @@ selinux --enforcing
 reboot
 
 # Auth
-rootpw $2a$04$yG0CBH5WjBZX5PyFaTjoT.bxUWNFRY2uO6XB40.No.QfcwlBywbTW --iscrypted
+rootpw $2a$12$cNc4PCBrOH2a2f.sjI58/eg1HOYmPagMXl4jyJTFwgA28Emfv/01. --iscrypted
 
 # DISK ####################################################
 # Partition clearing information
