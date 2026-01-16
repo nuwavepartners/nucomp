@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # @file run_nucomp_ansible.sh
-# @version 0.1.1
+# @version 0.2.2
 # @author Chris Stone
 # @description Installs Ansible requirements from a remote source and executes ansible-pull
 #              using `flock` to ensure a single instance runs at a time.
@@ -55,7 +55,7 @@ install_requirements() {
 #
 run_pull() {
     log_msg "Starting ansible-pull..."
-    ansible-pull -U "$REPO_URL"
+    ansible-pull -U "$REPO_URL" ansible/local.yml
 }
 
 #
